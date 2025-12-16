@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>serial_phoenix</name>
+  <version>0.1.0</version>
+  <description>Utility wrapper around the ament serial_driver package.</description>
+  <maintainer email="703342335@qq.com">marble703</maintainer>
+  <license>None</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>serial_driver</depend>
+</package>

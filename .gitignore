@@ -1,0 +1,8 @@
+.vscode/
+.github/
+.cache/
+
+.clangd
+
+
+build/
