@@ -19,8 +19,12 @@ ament_target_dependencies(serial_phoenix_core serial_driver)
 add_executable(serial_phoenix_main main.cpp)
 target_link_libraries(serial_phoenix_main serial_phoenix_core)
 
+# Terminal-serial bridge example
+add_executable(serial_terminal_bridge serial_phoenix/example/main.cpp)
+target_link_libraries(serial_terminal_bridge serial_phoenix_core)
+
 # Install
-install(TARGETS serial_phoenix_core serial_phoenix_main
+install(TARGETS serial_phoenix_core serial_phoenix_main serial_terminal_bridge
   EXPORT serial_phoenixTargets
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin

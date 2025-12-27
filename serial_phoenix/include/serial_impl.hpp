@@ -6,14 +6,11 @@ inline SerialCode Serial::read_unsafe(std::vector<uint8_t>& out) {
     }
     try {
         this->read_buffer_.resize(out.size());
-        // 实际不可能读取到比 sizeof(T) 更多的字节, 没有检查的需要
-        // this->bytes_ = this->serial_port_->receive(this->read_buffer_);
+        // 从串口读取到本地缓冲区
+        this->serial_port_->receive(this->read_buffer_);
     } catch (const std::exception& e) {
         return SerialCode::Value::READ_FAIL;
     }
-    // if (this->bytes_ != out.size()) {
-    //     return SerialCode::Value::READ_BYTE_MISMATCH;
-    // }
     std::memcpy(out.data(), this->read_buffer_.data(), out.size());
     return SerialCode::Value::OK;
 }
@@ -30,6 +27,8 @@ inline SerialCode Serial::read(std::vector<uint8_t>& out) {
 
     try {
         read_buffer.resize(out.size());
+        this->serial_port_->receive(read_buffer);
+
     } catch (const std::exception& e) {
         return SerialCode::Value::READ_FAIL;
     }
@@ -46,6 +45,7 @@ inline SerialCode Serial::read_unsafe(T& out) {
     }
     try {
         this->read_buffer_.resize(sizeof(T));
+        this->serial_port_->receive(this->read_buffer_);
     } catch (const std::exception& e) {
         return SerialCode::Value::READ_FAIL;
     }
@@ -68,6 +68,7 @@ inline SerialCode Serial::read(T& out) {
 
     try {
         read_buffer.resize(sizeof(T));
+        this->serial_port_->receive(read_buffer);
     } catch (const std::exception& e) {
         return SerialCode::Value::READ_FAIL;
     }
