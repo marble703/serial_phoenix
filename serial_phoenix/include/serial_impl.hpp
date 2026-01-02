@@ -1,4 +1,3 @@
-#include <cstdint>
 template<>
 inline SerialCode Serial::read_unsafe(std::vector<uint8_t>& out) {
     if (!this->is_open()) {

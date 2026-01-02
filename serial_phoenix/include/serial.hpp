@@ -2,8 +2,6 @@
 
 #include <filesystem>
 
-#include <cassert>
-#include <functional>
 #include <serial_driver/serial_driver.hpp>
 
 namespace serial_phoenix {
